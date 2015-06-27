@@ -11,11 +11,13 @@
         method: "get",
         url: "http://api.justgiving.com/charity/ab813ab8/v1/charity/search",
         dataType: "json",
-        success: fuction(data){
+        success: function(data){
           eventsJson = data;
           refresh();
         }
       })
+
+      console.log(data)
 
       charityNames
     </script>
@@ -29,7 +31,7 @@
       <div data-role="header">
         <h1>Dashboard</h1>
       </div><!-- /header -->
-      
+
       <div data-role="body">
 
       </div><!-- /body -->
