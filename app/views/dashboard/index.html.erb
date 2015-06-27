@@ -9,17 +9,17 @@
       var eventsJson = null
       $.ajax({
         method: "get",
-        url: "http://api.justgiving.com/charity/ab813ab8/v1/charity/search",
+        url: "api.justgiving.com/charity/ab813ab8/v1/charity/search",
         dataType: "json",
-        success: function(data){
+        success: fuction(data){
           eventsJson = data;
           refresh();
         }
       })
 
-      console.log(data)
-
-      charityNames
+      function refresh(){
+        for (var i = 0;)
+      }
     </script>
 
   </head>
@@ -31,7 +31,7 @@
       <div data-role="header">
         <h1>Dashboard</h1>
       </div><!-- /header -->
-
+      
       <div data-role="body">
 
       </div><!-- /body -->
