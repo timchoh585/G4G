@@ -14,9 +14,16 @@
       
       <div data-role="content">
         <ul data-role="listview" id="charities"></ul>
+
+        <div id="button_holder"></div>
       </div><!-- /content -->
 
       <script>
+
+        $(document).ready(function() {
+          setTimeout(getUrlVars(), 2000);
+        });
+
         var eventsJson = null;
         var charityName = null;
         var charityNum = null;
@@ -58,6 +65,7 @@
 
         function refresh(){
           $('#charities').html('<li><img src=' + eventsJson.logoAbsoluteUrl + '>' + eventsJson.name + '</li>').listview('refresh');
+          $('#button_holder').html('<a href=http://www.justgiving.com/ab813ab8/donation/direct/charity/' + num + ' data-role="button">' + Donate + '</a>')
         }
 
         findCharity(charityNum);

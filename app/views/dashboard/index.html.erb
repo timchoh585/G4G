@@ -13,65 +13,68 @@
       </div><!-- /header -->
       
       <div data-role="content">
-        <ul data-role="listview" data-inset="true" id="charities" data-filter-reveal="true" data-filter="true" data-filter-placeholder="Search Charities"></ul>
+        <ul data-role="listview" data-inset="true" id="charities" data-filter="true" data-filter-placeholder="Search Charities"></ul>
       </div><!-- /content -->
 
-      <!-- footer navigator -->
-      <div data-role="footer" data-id="foo1" data-position="fixed">
-        <div data-role="navbar">
-          <ul>
-            <li><a href="login/login">Login</a></li>
-            <li><a href="b.html">Friends</a></li>
-            <li><a href="c.html">Albums</a></li>
-            <li><a href="d.html">Emails</a></li>
-          </ul>
-        </div><!-- /navbar -->
-      </div><!-- /footer -->
-
       <script>
-    
-        var numberOfHits = null;
-        var logoURL = [];
-        var charityNames = [];
-        var eventsJson = null;
+        charityName = [];
+        charityId = [];
+        eventsJson = null;
+        
+        $(document).ready(function() {
+          setTimeout(query(), 2000);
+        });
 
-        function query(q){
-          $.ajax({
+        function query(q)
+        {
+          charityName = [];
+          charityId = [];
+          eventsJson = null;
+          $.ajax(
+          {
             type: "post",
             method: "get",
-            url: "https://api.justgiving.com/ab813ab8/v1/charity/search?pageSize=10&q="+q,
+            url: "https://api.justgiving.com/ab813ab8/v1/charity/search?pageSize=5&q="+q,
             headers: {'accept' : 'application/json'},
-            success: function(data){
+            success: function(data)
+            {
               eventsJson = data;
+              console.log(eventsJson);
               numberOfHits = eventsJson.charitySearchResults.length;
               refresh();
             }
           });
         }
 
-        query();
-
-        function refresh(){
-          for (var i = 0; i < numberOfHits; i++){
-            charityNames.push(eventsJson.charitySearchResults[i].name);
-            logoURL.push(eventsJson.charitySearchResults[i].logoUrl);
+        function refresh()
+        {
+          for (var i = 0; i < numberOfHits; i++)
+          {
+            console.log(eventsJson.charitySearchResults[i].name);
+            charityName.push(eventsJson.charitySearchResults[i].name);
+            console.log(eventsJson.charitySearchResults[i].charityId);
+            charityId.push(eventsJson.charitySearchResults[i].charityId);
           }
 
-          charityNames.sort();
+          var output = [];
+          for (var i = 0; i < numberOfHits; i++)
+          {
+            output.push('<li><a href=/single/?charity_id=' + charityId[i] + '>' + charityName[i] +'</li>');
+          }
 
-          var output = '';
-          $.each(charityNames, function(index, value){
-            output += '<li><img src=' + logoURL[index] '>' + charityNames[index] + '</li>';
-          });
-          
-          $('#charities').html(output).listview('refresh');
+         $('#charities').append(output.join('')).listview('refresh');
+
+         $("#charities").listview("refresh");
         }
 
-        $('#charities').on("filterablebeforefilter", function(e, data) {
+        $('#charities').on("filterablebeforefilter", function(e, data)
+        {
+          charityName = [];
+          charityId = [];
+          eventsJson = null;
           query(data.input[0].value);
         });
-
-        </script>
+      </script>
 
     </div><!-- /page -->
   </body>
