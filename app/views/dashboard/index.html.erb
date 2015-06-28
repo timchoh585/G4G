@@ -13,7 +13,7 @@
       </div><!-- /header -->
       
       <div data-role="content">
-        <ul data-role="listview" data-inset="true" id="charities" data-filter="true" data-filter-placeholder="Search Charities"></ul>
+        <ul data-role="listview" data-inset="true" id="charities" data-filter-reveal="true" data-filter="true" data-filter-placeholder="Search Charities"></ul>
       </div><!-- /content -->
 
       <!-- footer navigator -->
@@ -31,8 +31,10 @@
       <script>
     
         var numberOfHits = null;
+        var logoURL = [];
         var charityNames = [];
         var eventsJson = null;
+
         function query(q){
           $.ajax({
             type: "post",
@@ -49,28 +51,25 @@
 
         query();
 
-          function refresh(){
-            for (var i = 0; i < numberOfHits; i++){
-              charityNames.push(eventsJson.charitySearchResults[i].name);
-            }
-
-            charityNames.sort();
-
-            var output = '';
-            $.each(charityNames, function(index, value){
-              output += '<li>' + charityNames[index] + '</li>';
-            });
-            
-            $('#charities').html(output).listview('refresh');
-
-
+        function refresh(){
+          for (var i = 0; i < numberOfHits; i++){
+            charityNames.push(eventsJson.charitySearchResults[i].name);
+            logoURL.push(eventsJson.charitySearchResults[i].logoUrl);
           }
 
-        $('#charities').on("filterablebeforefilter", function(e, data) {
-              
-              query(data.input[0].value);
+          charityNames.sort();
 
-            });
+          var output = '';
+          $.each(charityNames, function(index, value){
+            output += '<li><img src=' + logoURL[index] '>' + charityNames[index] + '</li>';
+          });
+          
+          $('#charities').html(output).listview('refresh');
+        }
+
+        $('#charities').on("filterablebeforefilter", function(e, data) {
+          query(data.input[0].value);
+        });
 
         </script>
 
