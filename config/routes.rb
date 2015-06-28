@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'dashboard#index'
 
   resources :dashboard
+  resources :trees
 
   get 'givegood' => 'givegood#index'
   get 'single' => 'dashboard#single'
