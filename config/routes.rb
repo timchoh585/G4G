@@ -4,7 +4,13 @@ Rails.application.routes.draw do
   resources :dashboard
 
   get 'givegood' => 'givegood#index'
+<<<<<<< HEAD
   get 'single' => 'dashboard#single'
+=======
+  get '/auth/twitter' => 'session#login'
+  get '/auth/twitter/callback' => 'session#callback'
+
+>>>>>>> 49ea453b26f5e8429a37a8076ca8ff657dc7e24d
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
