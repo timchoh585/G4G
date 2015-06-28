@@ -15,6 +15,93 @@
  *= require jquery.mobile
  */
 
+.shadow {
+	margin: 0.5em;
+	box-shadow: 10px 10px 10px #222222;
+}
+
+.important_text {
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+header {
+	position: relative;
+	background-image: url("http://static1.squarespace.com/static/51922891e4b0a96be871dde0/t/51976fb9e4b0079d49c5d75d/1368879033665/Banner+oak+tree+1020x302.jpg");
+	border: 0.5em #444444;
+	margin: 0.5em;
+	box-shadow: 10px 10px 10px #222222;
+}
+
+.header_text {
+	position: absolute;
+	bottom: 0.5em;
+	margin: auto;
+	font-size: 2em;
+}
+
+.charity_container {
+	width: 70%;
+	margin: auto;
+}
+
+.charity_logo {
+	display: inline-block;
+	margin: 1.5em;
+}
+
+.title_and_desc {
+	display: inline-block;
+}
+
+.charity_title {
+	font-size: 1.4em
+}
+
+.charity_description {
+	line-height: 1.3em
+}
+
+.tree_container {
+	background-color: #598330;
+	width: 85%;
+}
+
+.tree_person_container {
+	display: inline-block;
+}
+
+.double_person_container {
+
+}
+
+.tree_founder {
+	display: inline-block;
+}
+
+.tree_member {
+	display: inline-block;
+}
+
+.twitter_handle {
+	font-size: 0.8em;
+}
+
+.bottom_container {
+	width: 85%;
+	margin: auto;
+}
+
+.your_turn {
+	width: 85%;
+	margin: auto;
+}
+
+.friend_selector {
+	margin: auto;
+}
+
+.donation_link {
+
 #button {
     width: 80px;
 }
