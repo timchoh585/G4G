@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dashboard</title>
+  </head>
+
+  <body>
+
+    <div data-role="page" id="dashboard">
+
+      <div data-role="header">
+        <h1>Dashboard</h1>
+      </div><!-- /header -->
+      
+      <div data-role="content">
+        <ul data-role="listview" id="charities"></ul>
+
+        <div id="button_holder"></div>
+      </div><!-- /content -->
+
+      <script>
+
+        $(document).ready(function() {
+          setTimeout(getUrlVars(), 2000);
+        });
+
+        var eventsJson = null;
+        var charityName = null;
+        var charityNum = null;
+
+        function getUrlVars()
+        {
+            var vars = [], hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for(var i = 0; i < hashes.length; i++)
+            {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }
+
+        function getId()
+        {
+          charityNum = getUrlVars()["charity_id"];
+          console.log(charityNum);
+        }
+
+        getId();
+
+        function findCharity(num){
+          $.ajax({
+            type: "post",
+            method: "get",
+            url: "https://api.justgiving.com/ab813ab8/v1/charity/"+num,
+            headers: {'accept' : 'application/json'},
+            success: function(data){
+              eventsJson = data;
+              console.log(eventsJson);
+              refresh();
+            }
+          });
+        }
+
+        function refresh(){
+          $('#charities').html('<li><img src=' + eventsJson.logoAbsoluteUrl + '>' + eventsJson.name + '</li>').listview('refresh');
+          $('#button_holder').html('<a href=https://www.justgiving.com/4w350m3/donation/direct/charity/' + charityNum + '?amount=5&exitUrl=http://www.google.com data-role="button">Donate</a>');
+        }
+
+        findCharity(charityNum);
+        </script>
+
+    </div><!-- /page -->
+  </body>
+</html>

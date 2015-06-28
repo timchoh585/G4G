@@ -10,8 +10,9 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
  *= require_self
+ *= require_tree .
+ *= require jquery.mobile
  */
 
 .shadow {
@@ -99,4 +100,10 @@ header {
 
 .donation_link {
 
+#button {
+    width: 80px;
+}
+#button iframe {
+    width: 80px ;
+    height: 25px ;
 }

@@ -2,26 +2,6 @@
 <html>
   <head>
     <title>Dashboard</title>
-
-    <script>
-    charityNames = [];
-
-      var eventsJson = null
-      $.ajax({
-        method: "get",
-        url: "http://api.justgiving.com/charity/ab813ab8/v1/charity/search",
-        dataType: "json",
-        success: function(data){
-          eventsJson = data;
-          refresh();
-        }
-      })
-
-      console.log(data)
-
-      charityNames
-    </script>
-
   </head>
 
   <body>
@@ -31,24 +11,71 @@
       <div data-role="header">
         <h1>Dashboard</h1>
       </div><!-- /header -->
+      
+      <div data-role="content">
+        <ul data-role="listview" data-inset="true" id="charities" data-filter="true" data-filter-placeholder="Search Charities"></ul>
+      </div><!-- /content -->
 
-      <div data-role="body">
+      <script>
+        charityName = [];
+        charityId = [];
+        eventsJson = null;
+        
+        $(document).ready(function() {
+          setTimeout(query(), 2000);
+        });
 
-      </div><!-- /body -->
+        function query(q)
+        {
+          charityName = [];
+          charityId = [];
+          eventsJson = null;
+          $.ajax(
+          {
+            type: "post",
+            method: "get",
+            url: "https://api.justgiving.com/ab813ab8/v1/charity/search?pageSize=5&q="+q,
+            headers: {'accept' : 'application/json'},
+            success: function(data)
+            {
+              eventsJson = data;
+              console.log(eventsJson);
+              numberOfHits = eventsJson.charitySearchResults.length;
+              refresh();
+            }
+          });
+        }
 
-      <!-- footer navigator -->
-      <div data-role="footer" data-id="foo1" data-position="fixed">
-        <div data-role="navbar">
-          <ul>
-            <li><a href="login/login">Login</a></li>
-            <li><a href="b.html">Friends</a></li>
-            <li><a href="c.html">Albums</a></li>
-            <li><a href="d.html">Emails</a></li>
-          </ul>
-        </div><!-- /navbar -->
-      </div><!-- /footer -->
+        function refresh()
+        {
+          for (var i = 0; i < numberOfHits; i++)
+          {
+            console.log(eventsJson.charitySearchResults[i].name);
+            charityName.push(eventsJson.charitySearchResults[i].name);
+            console.log(eventsJson.charitySearchResults[i].charityId);
+            charityId.push(eventsJson.charitySearchResults[i].charityId);
+          }
+
+          var output = [];
+          for (var i = 0; i < numberOfHits; i++)
+          {
+            output.push('<li><a href=/single/?charity_id=' + charityId[i] + '>' + charityName[i] +'</li>');
+          }
+
+         $('#charities').append(output.join('')).listview('refresh');
+
+         $("#charities").listview("refresh");
+        }
+
+        $('#charities').on("filterablebeforefilter", function(e, data)
+        {
+          charityName = [];
+          charityId = [];
+          eventsJson = null;
+          query(data.input[0].value);
+        });
+      </script>
 
     </div><!-- /page -->
-
   </body>
 </html>
