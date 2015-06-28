@@ -87,15 +87,17 @@ header {
 }
 
 .bottom_container {
-
+	width: 85%;
+	margin: auto;
 }
 
 .your_turn {
-
+	width: 85%;
+	margin: auto;
 }
 
 .friend_selector {
-
+	margin: auto;
 }
 
 .donation_link {
