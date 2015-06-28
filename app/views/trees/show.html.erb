@@ -10,21 +10,17 @@
 
 <script>
 
-console.log("word")
-
-
-
-$.ajax(
-          {
-            type: "post",
-            url: "/friends",
-            form: "json",
-            success: function(data)
-            {
-              console.log(data)
-              eventsJson = data;
-            }
-          });
+  $.ajax(
+  {
+    type: "post",
+    url: "/friends",
+    form: "json",
+    success: function(data)
+    {
+      console.log(data)
+      eventsJson = data;
+    }
+  });
 
 
 </script>
