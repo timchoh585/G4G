@@ -23,9 +23,7 @@
         $(document).ready(function() {
           setTimeout(getUrlVars(), 2000);
         });
-      </div><!-- /content -->
 
-      <script>
         var eventsJson = null;
         var charityName = null;
         var charityNum = null;
@@ -67,7 +65,7 @@
 
         function refresh(){
           $('#charities').html('<li><img src=' + eventsJson.logoAbsoluteUrl + '>' + eventsJson.name + '</li>').listview('refresh');
-          $('#button_holder').html('<a href=http://www.justgiving.com/ab813ab8/donation/direct/charity/' + num + ' data-role="button">' + Donate + '</a>')
+          $('#button_holder').html('<a href=https://www.justgiving.com/4w350m3/donation/direct/charity/' + charityNum + '?amount=5&exitUrl=http://www.google.com data-role="button">Donate</a>');
         }
 
         findCharity(charityNum);
