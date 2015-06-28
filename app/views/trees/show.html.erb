@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dashboard</title>
+  </head>
+
+  <body>
+
+    <div data-role="page" id="dashboard">
+
+<script>
+	var prefix = "https://api.twitter.com/1.1/users/show.json?screen_name="
+
+console.log("word")
+
+// $.ajax({
+//   type: "POST",
+//   url: "/friends",
+//   data: data,
+//   success: function() {
+//     alert("HII")
+//   },
+//   dataType: dataType,
+//   error: function(){
+//     alert('failure');
+//   }
+// });
+
+
+$.ajax(
+          {
+            type: "post",
+            url: "/friends",
+            form: "json",
+            success: function(data)
+            {
+              console.log(data)
+              eventsJson = data;
+            }
+          });
+
+
+</script>
+
+<% #@donors.each do |donor| %>
+	<div class="image_container">
+
+	<%=  %>
+	</div>
+<% #end %>
+
+</div><!-- /page -->
+  </body>
+</html>
