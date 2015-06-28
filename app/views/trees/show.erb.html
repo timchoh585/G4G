@@ -1,12 +1,53 @@
-<script>
-	var prefix = "https://api.twitter.com/1.1/users/show.json?screen_name="
-	var 
-
-</script>
-
-<% @donors.each do |donor| %>
-	<div class="image_container">
-
-	<%=  %>
+<header class="shadow">
+	<div class="header_content important_text">
+		Give 2 Good
 	</div>
-<% end %>
+</header>
+<div class="charity_container shadow">
+	<div class="charity_logo">
+		<img src="<%= @charity.logo %>">
+	</div>
+	<div class="title_and_desc">
+		<div class="charity_title">
+			<%= @charity.title %>
+		</div>
+		<div class="charity_description">
+			<%= @charity.description %>			
+		</div>
+	</div>
+	<div class="tree_container">
+		<div class="tree_person_container">
+			<div class="tree_founder">
+				<img src="<%= @tree_founder%>">
+			</div>
+			<div class="twitter_handle">
+				<%= @tree_founder.twitter_handle %>
+			</div>
+		</div>
+		<% @donors.each do |donor| %>
+			<div class="tree_person_container">
+				<div class="tree_member">
+					<img src="<%= donor %>">				
+				</div>
+				<div class="twitter_handle">
+					<%= @donor.twitter_handle %>
+				</div>
+			</div>
+		<% end %>
+		<div class="tree_person_container">
+			<div class="double_person_container">
+				<div class="tree_member">
+					<img src="<%= donor %>">				
+				</div>
+				<div class="twitter_handle">
+					<%= @donor.twitter_handle %>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="bottom_container">
+		<div class="">
+			
+		</div>
+	</div>
+</div>
