@@ -73,7 +73,7 @@
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
     js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
+    js.src = "//connect.facebook.net/en_LA/sdk.js";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 
@@ -85,8 +85,14 @@
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
+  FB.ui({
+    method: 'send',
+    link: 'http://www.nytimes.com/interactive/2015/04/15/travel/europe-favorite-streets.html',
+  });
     });
   }
+
+
 </script>
 
 <!--
