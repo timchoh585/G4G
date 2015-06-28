@@ -1,4 +1,4 @@
-user1 = User.create
+user1 = User.create(twitter_id: 12345, profile_image: "https://pbs.twimg.com/profile_images/556149932168474624/y64DFpRP_400x400.jpeg", screenname:"chrisrbohl")
 user2 = User.create
 charity1 = Charity.create(name: "The Human Fund", summary: "Money for People")
 tree1 = Tree.create(donation_amount: 10)
