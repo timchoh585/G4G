@@ -7,12 +7,12 @@ class Tree < ActiveRecord::Base
 
   def sort_donors_chron
   	self.donations.order(created_at: :asc).map do |donation|
-  		donation.donor.t
-  	end.to_json
+  		donation.donor
+  	end
   end
 
   def get_pic_for_donor
-  	
+
   end
 
   def sort_proposed_chron
