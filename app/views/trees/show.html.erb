@@ -8,23 +8,58 @@
 
     <div data-role="page" id="dashboard">
 
-<script>
+      <div data-role="content" id="">
+        <ul data-role="listview" id="first" data-filter-reveal="true" data-inset="true" data-filter="true" data-filter-placeholder="Search for a friend"></ul>
+      </div>
 
-  $.ajax(
-  {
-    type: "post",
-    url: "/friends",
-    form: "json",
-    success: function(data)
-    {
-      console.log(data)
-      eventsJson = data;
-    }
+ <script>
+  users = [];
+  profImg = [];
+  id = [];
+  eventsJson = null;
+  
+  $(document).ready(function() {
+    setTimeout(query(), 2000);
   });
 
+  function query(q)
+  {
+    eventsJson = null;
+    $.ajax(
+    {
+      type: "post",
+      url: "/friends",
+      form: "json",
+      success: function(data)
+      {
+        eventsJson = data;
+        console.log(eventsJson);
+        refresh();
+      }
+    });
+  }
 
+  function refresh()
+  {
+    for (var i = 0; i < eventsJson.length; i++)
+    {
+      console.log(eventsJson[i].screen_name);
+      id.push(eventsJson[i].id);
+      profImg.push(eventsJson[i].profile_image_url_https);
+      users.push(eventsJson[i].screen_name);
+    }
+
+    var output = [];
+    for (var i = 0; i < eventsJson.length; i++)
+    {
+      output.push('<li><form action="proposition/create" method="post"><input name="username" value=' + users[i] + '>' + '<input name="twitter_id" value=' + id[i] + '>' + '<input name="profile_image value=' + profImg[i] + '>' + users[i] + '</form></li>');
+    }
+
+   $('#first').append(output.join('')).listview('refresh');
+
+   $("#first").listview("refresh");
+  }
 </script>
-
 <header class="shadow">
   <img src="http://static1.squarespace.com/static/51922891e4b0a96be871dde0/t/51976fb9e4b0079d49c5d75d/1368879033665/Banner+oak+tree+1020x302.jpg">
 </header>
