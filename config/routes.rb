@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   resources :dashboard
   resources :trees
+  resources :users
+  resources :propositions
 
   get 'givegood' => 'givegood#index'
   get 'single' => 'dashboard#single'

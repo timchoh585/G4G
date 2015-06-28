@@ -17,7 +17,7 @@
   profImg = [];
   id = [];
   eventsJson = null;
-  
+
   $(document).ready(function() {
     setTimeout(query(), 2000);
   });
@@ -52,7 +52,7 @@
     var output = [];
     for (var i = 0; i < eventsJson.length; i++)
     {
-      output.push('<li><form action="proposition/create" method="post"><input name="username" value=' + users[i] + '>' + '<input name="twitter_id" value=' + id[i] + '>' + '<input name="profile_image value=' + profImg[i] + '>' + users[i] + '</form></li>');
+      output.push('<li><a href=/propositions/new?screenname=' + id[i] + '&profImg=' + profImg[i] + '&user=' + users[i] + '>' + users[i] + '</a></li>');
     }
 
    $('#first').append(output.join('')).listview('refresh');
