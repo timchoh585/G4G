@@ -25,18 +25,17 @@
 }
 
 header {
-	position: relative;
-	background-image: url("http://static1.squarespace.com/static/51922891e4b0a96be871dde0/t/51976fb9e4b0079d49c5d75d/1368879033665/Banner+oak+tree+1020x302.jpg");
+
 	border: 0.5em #444444;
 	margin: 0.5em;
-	box-shadow: 10px 10px 10px #222222;
+	height:18em;
 }
 
 .header_text {
-	position: absolute;
+	box-shadow: 10px 10px 10px #222222;
 	bottom: 0.5em;
 	margin: auto;
-	font-size: 2em;
+	font-size: 5em;
 }
 
 .charity_container {

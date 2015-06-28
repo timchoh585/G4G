@@ -57,9 +57,76 @@
 
    $('#first').append(output.join('')).listview('refresh');
 
+<<<<<<< HEAD
    $("#first").listview("refresh");
   }
 </script>
+=======
+<header class="shadow">
+  <img src="http://static1.squarespace.com/static/51922891e4b0a96be871dde0/t/51976fb9e4b0079d49c5d75d/1368879033665/Banner+oak+tree+1020x302.jpg">
+</header>
+  <div class="header_text dimportant_text">
+    Give 2 Good
+  </div>
+<div class="charity_container shadow">
+  <div class="charity_logo">
+    <img src="">
+  </div>
+  <div class="title_and_desc">
+    <div class="charity_title">
+      <%= @charity.name %>
+    </div>
+    <div class="charity_description">
+      <%= @charity.summary %>
+    </div>
+  </div>
+  <div class="tree_container">
+    <div class="tree_person_container">
+      <div class="tree_founder">
+        <img src="<%= @donors[0].profile_image %>">
+      </div>
+      <div class="twitter_handle">
+        <%= @donors[0].screenname %>
+      </div>
+    </div>
+    <% @donors[1..-3].each do |donor| %>
+      <div class="tree_person_container">
+        <div class="tree_member">
+          <img src="<%= donor %>">
+        </div>
+        <div class="twitter_handle">
+          <%= @donor.screenname %>
+        </div>
+      </div>
+    <% end %>
+    <div class="tree_person_container">
+      <div class="double_person_container">
+        <div class="tree_member">
+          <img src="<%= @donors[-1].profile_image %>">
+        </div>
+        <div class="twitter_handle">
+          <%= @donors[-1].screenname %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom_container">
+    <div class="your_turn">
+
+    </div>
+    <div class="friend_selector">
+
+    </div>
+    <div class="friend_selector">
+
+    </div>
+    <div class="donation_link">
+<!--       button
+ -->
+    </div>
+  </div>
+</div>
+>>>>>>> 56e784ac65db6273c7c675462aa60254285cb00f
 
 
   </body>
