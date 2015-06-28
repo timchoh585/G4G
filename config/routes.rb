@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :dashboard
 
   get 'givegood' => 'givegood#index'
+  get 'single' => 'dashboard#single'
   get '/auth/twitter' => 'session#login'
   get '/auth/twitter/callback' => 'session#callback'
   post '/friends' => 'session#friends'
