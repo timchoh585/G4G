@@ -8,86 +8,58 @@
 
     <div data-role="page" id="dashboard">
 
-<script>
+      <div data-role="content" id="">
+        <ul data-role="listview" id="first" data-filter-reveal="true" data-inset="true" data-filter="true" data-filter-placeholder="Search for a friend"></ul>
+      </div>
 
-  $.ajax(
-  {
-    type: "post",
-    url: "/friends",
-    form: "json",
-    success: function(data)
-    {
-      console.log(data)
-      eventsJson = data;
-    }
+ <script>
+  users = [];
+  profImg = [];
+  id = [];
+  eventsJson = null;
+  
+  $(document).ready(function() {
+    setTimeout(query(), 2000);
   });
 
+  function query(q)
+  {
+    eventsJson = null;
+    $.ajax(
+    {
+      type: "post",
+      url: "/friends",
+      form: "json",
+      success: function(data)
+      {
+        eventsJson = data;
+        console.log(eventsJson);
+        refresh();
+      }
+    });
+  }
 
+  function refresh()
+  {
+    for (var i = 0; i < eventsJson.length; i++)
+    {
+      console.log(eventsJson[i].screen_name);
+      id.push(eventsJson[i].id);
+      profImg.push(eventsJson[i].profile_image_url_https);
+      users.push(eventsJson[i].screen_name);
+    }
+
+    var output = [];
+    for (var i = 0; i < eventsJson.length; i++)
+    {
+      output.push('<li><form action="proposition/create" method="post"><input name="username" value=' + users[i] + '>' + '<input name="twitter_id" value=' + id[i] + '>' + '<input name="profile_image value=' + profImg[i] + '>' + users[i] + '</form></li>');
+    }
+
+   $('#first').append(output.join('')).listview('refresh');
+
+   $("#first").listview("refresh");
+  }
 </script>
-
-<header class="shadow">
-  <div class="header_content important_text">
-    Give 2 Good
-  </div>
-</header>
-<div class="charity_container shadow">
-  <div class="charity_logo">
-    <img src="<%= @charity.logo %>">
-  </div>
-  <div class="title_and_desc">
-    <div class="charity_title">
-      <%= @charity.title %>
-    </div>
-    <div class="charity_description">
-      <%= @charity.description %>     
-    </div>
-  </div>
-  <div class="tree_container">
-    <div class="tree_person_container">
-      <div class="tree_founder">
-        <img src="<%= @tree_founder%>">
-      </div>
-      <div class="twitter_handle">
-        <%= @tree_founder.twitter_handle %>
-      </div>
-    </div>
-    <% @donors.each do |donor| %>
-      <div class="tree_person_container">
-        <div class="tree_member">
-          <img src="<%= donor %>">        
-        </div>
-        <div class="twitter_handle">
-          <%= @donor.twitter_handle %>
-        </div>
-      </div>
-    <% end %>
-    <div class="tree_person_container">
-      <div class="double_person_container">
-        <div class="tree_member">
-          <img src="<%= donor %>">        
-        </div>
-        <div class="twitter_handle">
-          <%= @donor.twitter_handle %>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="bottom_container">
-    <div class="your_turn">
-      
-    </div>
-    <div class="friend_selector">
-      
-    </div>
-    <div class="friend_selector">
-      
-    </div>
-    <div class="donation_link">
-<!--       button
- -->    
-    </div>
-  </div>
-</div>
 
 
   </body>
