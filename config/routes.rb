@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'givegood' => 'givegood#index'
   get '/auth/twitter' => 'session#login'
   get '/auth/twitter/callback' => 'session#callback'
+  post '/friends' => 'session#friends'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
