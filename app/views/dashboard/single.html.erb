@@ -11,7 +11,7 @@
       <div data-role="header">
         <h1>Dashboard</h1>
       </div><!-- /header -->
-      
+
       <div data-role="content">
         <ul data-role="listview" id="charities"></ul>
 
@@ -21,8 +21,7 @@
       <script>
 
         $(document).ready(function() {
-          setTimeout(getUrlVars(), 2000);
-        });
+          // setTimeout(findCharity(getId()), 2000);
 
         var eventsJson = null;
         var charityName = null;
@@ -64,11 +63,12 @@
         }
 
         function refresh(){
-          $('#charities').html('<li><img src=' + eventsJson.logoAbsoluteUrl + '>' + eventsJson.name + '</li>').listview('refresh');
-          $('#button_holder').html('<a href=https://www.justgiving.com/4w350m3/donation/direct/charity/' + charityNum + '?amount=5&exitUrl=http://www.google.com data-role="button">Donate</a>');
+          $('#charities').html('<li><a href="/trees/1"><img src=' + eventsJson.logoAbsoluteUrl + '>' + eventsJson.name + '</a></li>').listview('refresh');
+          // $('#button_holder').html('<a href=https://www.justgiving.com/4w350m3/donation/direct/charity/' + charityNum + '?amount=5&exitUrl=http://www.google.com data-role="button">Donate</a>');
         }
 
         findCharity(charityNum);
+      });
         </script>
 
     </div><!-- /page -->

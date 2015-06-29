@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'single' => 'dashboard#single'
   get '/auth/twitter' => 'session#login'
   get '/auth/twitter/callback' => 'session#callback'
+  get '/trees/show2' => 'trees#show2'
   post '/friends' => 'session#friends'
 
   # The priority is based upon order of creation: first created -> highest priority.

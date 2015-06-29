@@ -15,9 +15,15 @@
  *= require jquery.mobile
  */
 
+img {
+	padding: 1em;
+	box-shadow: 5px 5px 5px #222222;
+	margin-bottom:1em;
+}
+
 .shadow {
 	margin: 0.5em;
-	box-shadow: 10px 10px 10px #222222;
+	box-shadow: 7px 7px 7px #222222;
 }
 
 .important_text {
@@ -69,9 +75,20 @@ header {
 	display: inline-block;
 }
 
-.double_person_container {
-
+.two-people {
+	display: inline-block;
 }
+
+.big_photo {
+	height:200px;
+	width:auto;
+}
+
+.little_photo {
+	height:150px;
+	width:auto;
+}
+
 
 .tree_founder {
 	display: inline-block;
@@ -82,7 +99,9 @@ header {
 }
 
 .twitter_handle {
-	font-size: 0.8em;
+	font-size: 1.1em;
+
+	text-align: center;
 }
 
 .bottom_container {
@@ -107,4 +126,17 @@ header {
 #button iframe {
     width: 80px ;
     height: 25px ;
+}
+
+#top {
+	position: relative;
+}
+
+#bottom {
+
+}
+
+.green_back {
+	background-color: #598330;
+
 }
